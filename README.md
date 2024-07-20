@@ -4,7 +4,7 @@ Welcome to the DSA Repository! This repository contains various topics related t
 
 ## Table of Contents
 
-1. [Arrays](topics/arrays/README.md)
+1. [Arrays](Topics/Arrays/README.md)
 2. [Linked Lists](topics/linked-lists/README.md)
 3. [Trees](topics/trees/README.md)
 4. [Resources](resources/README.md)
