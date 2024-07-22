@@ -1,19 +1,32 @@
 #include <iostream>
 using namespace std;
 
+void insertion(int array[], int size, int data, int pos){
+    size = size + 1;
+    for (int i = size; i > pos; i--)
+    {
+        array[i] = array[i-1];
+
+    }
+    array[pos] = data;
+
+}
+
 int main(int argc, char const *argv[])
 {
     // Declaration of array
     int array[5];
 
     // initialization of array
-    int array2[5] = {1,2,3,4,5};
+    int array2[] = {1,2,3,4,5};
 
     //initialization of array without declaring the size
     int array3[] = {1,2,3,4,5,6,7,8,9};
 
     // accessing any element of array using index
     cout<<"element at 2nd index is "<<array2[2]<<endl<<endl;
+
+    insertion(array2, 6, 9, 3);
 
     //ARRAY TRAVERSAL
     cout<<"Array traversal"<<endl;
@@ -40,6 +53,7 @@ int main(int argc, char const *argv[])
         }
         cout<<endl;
     }    
+
 
     return 0;
 }
