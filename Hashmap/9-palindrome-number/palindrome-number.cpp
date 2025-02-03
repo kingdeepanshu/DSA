@@ -1,17 +1,21 @@
 class Solution {
 public:
-    bool isPalindrome(int x) {
-        if(x < 0) return false;
-        vector<int> b;
+    bool isPalindrome(int s) {
+        if(s < 0) return false;
+        // if(s >= 2147483647) return false;
+        long long int x = s;
+        long long int n = 0;
         while(x > 9){
             int t = x%10;
             x /= 10;
-            b.push_back(t);
+            n += t;
+            // if(n*10 < INT_MAX){
+            // }else{
+            //     return false;
+            // }
+            n *= 10;
         }
-        b.push_back(x);
-        for(int i = 0; i < b.size()/2; i++){
-            if(b[i] != b[b.size()-1-i]) return false;
-        }
-        return true;
+        n += x;
+        return n == s;
     }
 };
