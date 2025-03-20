@@ -12,25 +12,23 @@ class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
         ListNode* curr = head;
-        if(curr == nullptr) return head;
-        if(curr->next == nullptr) return head->next;
-
-        int c = 0;
-        while(curr!=nullptr){
+        int s = 0;
+        while (curr != nullptr) {
+            s++;
             curr = curr->next;
-            c++;
+        } // 5
+        if(s == n) return head->next;
+        int m = s - n; // 5-2 = 3
+        curr = head;
+        for (int i = 0; i < m-1; i++) {
+            curr = curr->next;
         }
-
-        curr = head;//1
-        if(c == n) return head->next;
-        c = c-n;//1
-
-        while(c > 1){
-            curr = curr->next;
-            c--;
-        }//1
-        // if(curr->next == nullptr) return head->next;
-        curr->next = curr->next->next;
+        if(curr->next){
+            curr->next = curr->next->next;
+        }else{
+            return nullptr;
+        }
         return head;
+
     }
 };
