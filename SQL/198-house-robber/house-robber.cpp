@@ -17,7 +17,7 @@ public:
 
     }
     int rob(vector<int>& nums) {
-        vector<int> dp(nums.size(), -1);
+        vector<int> dp(nums.size()+1, -1);
 
         return solvedp(nums, dp, 0);
     }
