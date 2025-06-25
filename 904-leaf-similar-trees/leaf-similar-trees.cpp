@@ -10,21 +10,23 @@
  * };
  */
 class Solution {
-public:
-    void leaf(TreeNode* root, vector<int> &ans){
+public: 
+    void solve(TreeNode* root, vector<int> &r){
         if(root == nullptr) return;
         if(root->left == nullptr && root->right == nullptr){
-            ans.push_back(root->val);
+            r.push_back(root->val);
+            return;
         }
-        leaf(root->left, ans);
-        leaf(root->right, ans);
+        solve(root->left, r);
+        solve(root->right, r);
     }
     bool leafSimilar(TreeNode* root1, TreeNode* root2) {
-        vector<int> o;
-        vector<int> t;
-        leaf(root1, o);
-        leaf(root2, t);
+        vector<int> r1;
+        vector<int> r2;
 
-        return o == t;
+        solve(root1, r1);
+        solve(root2, r2);
+        
+        return (r1 == r2);
     }
 };
