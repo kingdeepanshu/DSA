@@ -12,15 +12,20 @@
 class Solution {
 public:
     void solve(TreeNode* root, int &ans, int m){
-        if(root == nullptr) return;
-        if(root->val >= m) ans++;
-        m = max(m, root->val);
+        if(!root) return;
+        // int a;
+        if(root->val >= m){
+            // a = m;
+            m = root->val;
+            ans++;
+        }
         solve(root->left, ans, m);
+        // m = a;
         solve(root->right, ans, m);
     }
     int goodNodes(TreeNode* root) {
-        int m = root->val;
         int ans = 0;
+        int m = root->val;
         solve(root, ans, m);
         return ans;
     }
