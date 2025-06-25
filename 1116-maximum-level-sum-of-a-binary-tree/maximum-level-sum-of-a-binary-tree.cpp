@@ -12,33 +12,29 @@
 class Solution {
 public:
     int maxLevelSum(TreeNode* root) {
+
+        if(!root) return 0;
+
         int ans = 1;
-        int maxsum = INT_MIN;
-        if(!root->right && !root->left) return ans;
+        int c = 0;
+        int m = root->val;
 
         queue<TreeNode*> q;
         q.push(root);
-        int l = 1;
 
         while(!q.empty()){
             int s = q.size();
-            int sum = 0;
-
+            int a = 0;
+            c++;
             for(int i = 0; i < s; i++){
-                TreeNode* tn = q.front();
+                TreeNode* t = q.front();
                 q.pop();
-
-                sum += tn->val;
-
-                if(tn->left) q.push(tn->left);
-                if(tn->right) q.push(tn->right);
+                if(t->left) q.push(t->left);
+                if(t->right) q.push(t->right);
+                a += t->val;
             }
-            if(maxsum < sum) {
-                ans = l;
-                maxsum = sum;
-            }
-            
-            l++;
+            if(a>m) ans = c;
+            m = max(m, a);
         }
 
         return ans;
