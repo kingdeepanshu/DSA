@@ -1,35 +1,30 @@
 class Solution {
 public:
     vector<vector<int>> findDifference(vector<int>& nums1, vector<int>& nums2) {
-        unordered_set<int> s;
-
-        vector<vector<int>> ans(2);
-
-        for(int i: nums1){
-            s.insert(i);
+        vector<vector<int>> ans;
+        unordered_set<int> s1;
+        for(auto i: nums1){
+            s1.insert(i);
         }
-
-        for(int i: nums2){
-            if(s.find(i) != s.end()){
-                s.erase(i);
+        unordered_set<int> s2;
+        for(auto i: nums2){
+            s2.insert(i);
+        }
+        vector<int> a;
+        for(int i: s1){
+            if(s2.find(i) == s2.end()){
+                a.push_back(i);
+            }
+        }
+        ans.push_back(a);
+        vector<int> b;
+        for(int i: s2){
+            if(s1.find(i) == s1.end()){
+                b.push_back(i);
             }
         }
 
-        for(int i:s) ans[0].push_back(i);
-
-        s.clear();
-
-        for(int i: nums2){
-            s.insert(i);
-        }
-
-        for(int i: nums1){
-            if(s.find(i) != s.end()){
-                s.erase(i);
-            }
-        }
-
-        for(int i:s) ans[1].push_back(i);
+        ans.push_back(b);
 
         return ans;
     }
