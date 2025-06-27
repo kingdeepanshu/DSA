@@ -6,20 +6,10 @@ public:
 
         string ans = "";
 
-        while(i < word1.size() && j < word2.size()){
-            ans += word1[i];
-            ans += word2[j];
+        while(i < word1.size() || j < word2.size()){
+            if(i < word1.size()) ans+=word1[i];
+            if(j < word2.size()) ans+=word2[j];
             i++;
-            j++;
-        }
-
-        while(i < word1.size()){
-            ans+=word1[i];
-            i++;
-        }
-
-        while(j < word2.size()){
-            ans += word2[j];
             j++;
         }
 
