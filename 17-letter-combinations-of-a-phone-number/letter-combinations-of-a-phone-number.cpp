@@ -1,20 +1,22 @@
 class Solution {
 public:
-    void solve(string digits, unordered_map<char, string> mp, vector<string> &ans, string c, int i){
-        if(i >= digits.size()){
-            ans.push_back(c);
+    void solve(string digits, int i, vector<string> &ans, unordered_map<char, string> mp, string a){
+        if(i == digits.size()){
+            ans.push_back(a);
             return;
-        }else{
-            string pair = mp[digits[i]];
-            for(int j = 0; j < mp[digits[i]].size(); j++){
-                solve(digits, mp, ans, c+pair[j], i+1);
-            }
+        }
+        int s = mp[digits[i]].size();
+        for(int k = 0; k < s; k++){
+            a += mp[digits[i]][k];
+            solve(digits, i+1, ans, mp, a);
+            a.pop_back();
         }
     }
-    vector<string> letterCombinations(string digits) {
-        vector<string> ans;
-        if(digits.size() == 0) return ans;
 
+    vector<string> letterCombinations(string digits) {
+
+        vector<string> ans;
+        if(digits == "") return ans;
         unordered_map<char, string> mp = {
             {'2', "abc"},
             {'3', "def"},
@@ -26,9 +28,9 @@ public:
             {'9', "wxyz"}
         };
 
-        string c = "";
 
-        solve(digits, mp, ans, c, 0);
+        solve(digits, 0, ans, mp, "");
+
         return ans;
     }
 };
