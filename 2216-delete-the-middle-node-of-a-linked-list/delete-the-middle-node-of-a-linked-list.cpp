@@ -14,25 +14,23 @@ public:
         ListNode* fast = head;
         ListNode* slow = head;
 
-        if(head->next == nullptr){
-            return nullptr;
+        if(fast->next == nullptr) return nullptr;
+
+        if(fast->next->next == nullptr){
+            fast->next = nullptr;
+            return fast;
         }
 
-        if(head->next->next == nullptr){
-            head->next = nullptr;
-            return head;
-        }
-
-        while(fast->next != nullptr){
-            if(fast->next->next == nullptr){
-                slow = slow->next;
+        while(true){
+            if(!fast->next->next){
                 break;
             }
             fast = fast->next->next;
+            if(fast->next == nullptr){
+                break;
+            }
             slow = slow->next;
         }
-
-        slow->val = slow->next->val;
         slow->next = slow->next->next;
 
         return head;
