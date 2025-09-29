@@ -10,7 +10,7 @@ public:
         return ans;
     }
 
-    void bfs(vector<vector<int>> &adjList, int s, int d, vector<bool> &vis, bool &ans){
+    bool bfs(vector<vector<int>> &adjList, int s, int d, vector<bool> &vis){
         queue<int> q;
         q.push(s);
         vis[s] = true;
@@ -18,7 +18,7 @@ public:
         while(!q.empty()){
             int a = q.front();
             q.pop();
-            if(a == d) ans = true;
+            if(a == d) return true;
 
             for(auto i: adjList[a]){
                 if(!vis[i]){
@@ -27,21 +27,16 @@ public:
                 }
             }
         }
+
+        return false;
     }
 
     bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
         vector<vector<int>> adjList = adj(edges, n);
 
-        bool ans = false;
 
         vector<bool> vis(n, false);
-        bfs(adjList, source, destination, vis, ans);
-        // for(int i = 0; i < n; i++){
-        //     if(!vis[i] && i == source){
-        //         bfs(adjList, i, destination, vis);
-        //     }
-        // }
-
-        return ans;
+        return bfs(adjList, source, destination, vis);
+        
     }
 };
