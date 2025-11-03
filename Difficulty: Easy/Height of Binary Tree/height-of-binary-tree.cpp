@@ -11,14 +11,15 @@ public:
     }
 };
 */
+
 class Solution {
   public:
-    int height(Node* node) {
+    int height(Node* root) {
+        if(!root) return -1;
         // code here
-        if(node == nullptr) return -1;
-        int lh = height(node->left);
-        int rh = height(node->right);
+        int r = height(root->right);
+        int l = height(root->left);
         
-        return max(lh, rh)+1;
+        return max(r, l) + 1;
     }
 };
